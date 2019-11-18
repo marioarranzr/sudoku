@@ -1,5 +1,4 @@
-.PHONY: test
-
+.PHONY: run
 run:
 	go run cmd/sudoku/main.go
 

@@ -39,11 +39,11 @@ func main() {
 		e, h []int
 		err  error
 	)
-	e, err = sudoku.Solve(easySudoku)
+	e, err = sudoku.Solver(easySudoku)
 	if err != nil {
 		fmt.Println(err)
 	}
-	h, err = sudoku.Solve(hardSudoku)
+	h, err = sudoku.Solver(hardSudoku)
 	if err != nil {
 		fmt.Println(err)
 	}

@@ -2,8 +2,8 @@ package sudoku
 
 import "fmt"
 
-// Solve is the main task of this app
-func Solve(puzzle []int) ([]int, error) {
+// Solver is the main task of this app
+func Solver(puzzle []int) ([]int, error) {
 	if len(puzzle) != 81 {
 		return nil, fmt.Errorf("the sudoku has to have 9 rows and 9 columns")
 	}

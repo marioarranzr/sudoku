@@ -48,21 +48,33 @@ var hardSolution = []int{
 	6, 3, 2, 4, 8, 9, 1, 5, 7,
 	9, 5, 4, 7, 1, 6, 3, 8, 2,
 	1, 7, 8, 5, 3, 2, 6, 4, 9,
-
 	8, 1, 7, 2, 9, 4, 5, 3, 6,
 	2, 9, 3, 8, 6, 5, 4, 7, 1,
 	4, 6, 5, 3, 7, 1, 9, 2, 8,
-
 	7, 8, 6, 9, 5, 3, 2, 1, 4,
 	5, 2, 1, 6, 4, 7, 8, 9, 3,
 	3, 4, 9, 1, 2, 8, 7, 6, 5,
+}
+
+var impossibleToSolveSudoku = []int{
+	9, 0, 3, 0, 2, 0, 6, 0, 0,
+	9, 0, 0, 3, 0, 5, 0, 0, 1,
+	0, 0, 1, 8, 0, 6, 4, 0, 0,
+
+	0, 0, 8, 1, 0, 2, 9, 0, 0,
+	7, 0, 0, 0, 0, 0, 0, 0, 8,
+	0, 0, 6, 7, 0, 8, 2, 0, 0,
+
+	0, 0, 2, 6, 0, 9, 5, 0, 0,
+	8, 0, 0, 2, 0, 3, 0, 0, 9,
+	0, 0, 5, 0, 1, 0, 3, 0, 0,
 }
 
 var errSudoku = []int{
 	6,
 }
 
-func TestSolve(t *testing.T) {
+func TestSolver(t *testing.T) {
 	type args struct {
 		puzzle []int
 	}
@@ -89,6 +101,13 @@ func TestSolve(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: "notSolvedSudoku",
+			args: args{
+				impossibleToSolveSudoku,
+			},
+			wantErr: true,
+		},
+		{
 			name: "errSudoku",
 			args: args{
 				errSudoku,
@@ -98,13 +117,13 @@ func TestSolve(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := Solve(tt.args.puzzle)
+			got, err := Solver(tt.args.puzzle)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("Solve() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("Solver() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !compare(got, tt.want) {
-				t.Errorf("Solve() = %v, want %v", got, tt.want)
+				t.Errorf("Solver() = %v, want %v", got, tt.want)
 			}
 		})
 	}
