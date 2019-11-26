@@ -1,0 +1,7 @@
+# Test binary, build with `go test -c`
+*.test
+
+# OS 
+.DS_Store
+
+.vscode
